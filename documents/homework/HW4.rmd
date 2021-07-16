@@ -1,7 +1,7 @@
 ---
 title: "HW4: Hypothesis Testing and Stats"
-author: "Jack Hester"
-date: "7/15/2020"
+author: "[your name]"
+date: "Due 7/19/2021"
 output: html_document
 ---
 
@@ -13,7 +13,7 @@ library(reshape2)
 set.seed(123)
 ```
 
-### IMPORTANT: BEFORE YOU START YOU MUST RUN THE CODE BLOCK ABOVE (r setup) USING THE GREEN PLAY BUTTON AT THE RIGHT OR THE RUN BUTTON IN THE TOP TOOLBAR. IF YOU DO NOT, SOME OF YOUR ANSWERS WILL BE WRONG AND YOU WILL ENCOUTNER BUGS. Once you have done this, please remove this text block :)
+### IMPORTANT: BEFORE YOU START YOU MUST RUN THE CODE BLOCK ABOVE (r setup) USING THE GREEN PLAY BUTTON AT THE RIGHT OR THE RUN BUTTON IN THE TOP TOOLBAR. IF YOU DO NOT, SOME OF YOUR ANSWERS WILL BE WRONG AND YOU WILL ENCOUTNER BUGS. Once you have done this, please remove this text block :) Please also change your name in the header portion of the file at the top.
 
 
 # Introduction 
@@ -38,7 +38,7 @@ As you may already know, it's often useful to calculate mean, median, and/or sta
 
 # Q1:
 
-Using the mean, median, and standard deviation commands, please calculate the mean, median, and standard deviation of the sample in R. You can look up how to use these commands on the "sample" variable using the ? command (ex. ?mean). You might need to look up the standard deviation command in R (hint: it's 2 letters!). Run the code and then write what the mean, median, and standard deviation are below the code block (using text just like this).
+Using the mean, median, and standard deviation commands, please calculate the mean, median, and standard deviation of the sample in R. You can look up how to use these commands on the "sample" variable using the ? command (ex. ?mean). If you can't find the commands using the ? function, do a quick google search and you wil be able to find the--you might need to look up the standard deviation command in R (hint: it's 2 letters!). Run the code and then write what the mean, median, and standard deviation are below the code block (using text just like this).
 
 # a. (2pts.)
 
@@ -52,9 +52,36 @@ Using the mean, median, and standard deviation commands, please calculate the me
 
 What is the sample size? How many degrees of freedom does this sample have? (If you don't want to count, you can use the length() command).
 
-
+[your answer here]
 
 # Q2:
+
+# a. (2 pts.)
+
+Let's import some data and look at a distribution. First, download the "distribution.csv" file and run this code to import the information.
+
+```{r}
+# update code below with YOUR path to the csv file
+dist.values <- read.csv("your\ path/to/distribution.csv")
+```
+
+To see how the data are distrubuted, we'll just use the hist() command to save a bit of time, but you might want to use ggplot2's geom_histogram() option in the future to make your plots look nicer. Run the code below and take a look at the chart.
+
+```{r q2a}
+hist(dist.values$obs, breaks=20)
+```
+
+Describe what you see. How are the data on the plot grouped? How does the plot look? You can describe this generally or in terms of skew (see https://en.wikipedia.org/wiki/Skewness#:~:text=Skewness%20is%20a%20descriptive%20statistic,deviation%20from%20the%20normal%20distribution)/
+
+[your answer here]
+
+#b. (2 pts.)
+
+Let's suppose these data represent the average number of times someone gets a spam call in a given month. Based on this information (and the plot if it's helpful), what kind of distribution do you think best represents this variable? Hint: see the types of probability distributions at the beginning of the lecture notes.
+
+[your answer here]
+
+# Q3:
 
 Next, let's learn how to use box plots! First, you'll need to import the .csv file I've created for this assignment. Download the file, and then import it below using the read.csv command. 
 
@@ -62,39 +89,40 @@ This csv provides information on average test scores on an exam for fifty right-
 
 # a. (2 pts.)
 
-```{r q2a}
+```{r q3a}
 # update code below with YOUR path to the csv file
 scores.table <- read.csv("your\ path/to/test_scores.csv")
 ```
 
 What are the two variable names shown explicitly in the table (hint: column names)? What's the independent/predictor variable? What's the outcome/dependent variable? (Hint: the outcome variable is not explicitly labeled in the table but you can explain it based on the description above, and the predictors are shown as variable names)
 
-
+[your answer here]
 
 # b. (4 pts.)
 
-Let's do the first bit of exploratory data analysis: generating histograms. We'll just use the hist() command to save a bit of time, but you might want to use ggplot2's geom_histogram() option in the figure to make your plots look nicer. Run the code below and take a look at the charts.
+Let's do the first bit of exploratory data analysis: generating histograms. We showed how to generate a histogram in the question above. Use similar code to generate a histogram of the scores for each group (right_handed and left_handed). Rember, you can select a colum using table_name$column_name syntax. Set breaks to equal 20.
 
-```{r q2b}
-hist(scores.table$right_handed, breaks=20)
-hist(scores.table$left_handed, breaks=20)
+```{r q3b}
+
 ```
 
 What are your impressions? Do the outcome variables look approximately normally distributed? (hint: it doesn't have to be a perfect bell curve!)
+
+[your answer here]
 
 # c. (2 pts.)
 
 Now let's actually generate the box plot. I am providing the skeleton of the code you'll need, you just need to fill in the variables! Make sure you run the code block with "melt" before completing your code portion. Once you've updated the scores table using melt, take another look at it. Change <table name> to the correct name, and set x= to x=<independent/predictor column name> and y= to y=<dependent/output column name>.
 
+[your answer here]
 
-
-```{r q2cSetup}
+```{r q3cSetup}
 # this first command restructures the data in a way that makes it possible to use ggplot. You can take a look at what happened here if you like!
 melted.scores.table <- melt(scores.table, variable.name = "handed", value.name = "score")
 ```
 
 
-```{r q2c}
+```{r q3c}
 # Update code below with the correct table and x and y values
 # the table name is a little different now! (see the code block above)
 # if you're confused about aes(x,y) look at the ggplot documentation and at the way the new table is structured
@@ -106,11 +134,11 @@ ggplot(<TABLE NAME>, aes(x=<INDEP COLUMN NAME>, y=<DEPENDENT COLUMN NAME>)) +
 
 # d. (3 pts.)
 
-Now that you have the box plots generated, what are your impressions? Do the median values look significantly different? Do you think one of the groups (right or left handed) performed better on the exam?
+Now that you have the box plots generated, what are your impressions? Do the median values look substantially different? Do you think one of the groups (right or left handed) performed better on the exam?
 
+[your answer here]
 
-
-# Q3: 
+# Q4: 
 
 We've done a bit of EDA now, so let's perform a statistical test and interpret the results! Specifically, we'll be using a t-test.
 
@@ -118,9 +146,13 @@ We've done a bit of EDA now, so let's perform a statistical test and interpret t
 
 First, based on the description of the data above, which kind of t-test do you think we should use, and why? (one-sample, 2-sample, or paired?) Hint: think about how many unique populations of individuals are in the data set (is it one or two?)
 
+[your answer here]
+
 # b. (3 pts.)
 
 What are the assumptions of this test? (You can assume they are true in subsequent steps)
+
+[your answer here]
 
 
 # c. (5 pts.)
@@ -136,7 +168,7 @@ t.test(scores.table$right_handed, scores.table$left_handed,paired=[TRUE or FALSE
 
 Now that you've gotten the results, what is the p-value and what is the confidence interval? Does the p-value show a statistically significant difference in results between the two groups (right or left handed)? How about the confidence interval? For both, why or why not? Assume a significance level of $\alpha$ = 0.05 (5%). Remember, you compare the p-value to the significance level, and look for zero in the confidence interval.
 
-
+[your answer here]
 
 # d. (5 pts.)
 
